@@ -10,7 +10,8 @@ abstract class TugasDatabase : RoomDatabase() {
     abstract fun tugasDao(): TugasDao
 
     companion object {
-        @Volatile private var instance: TugasDatabase? = null
+        @Volatile
+        private var instance: TugasDatabase? = null
 
         fun getDatabase(context: Context): TugasDatabase =
             instance ?: synchronized(this) {

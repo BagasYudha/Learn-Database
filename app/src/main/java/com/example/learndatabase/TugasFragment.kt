@@ -14,7 +14,7 @@ import com.example.learndatabase.setup.Tugas
 class TugasFragment : Fragment() {
 
     private lateinit var binding: FragmentTugasBinding
-    private lateinit var tugasViewModel: TugasViewModel
+    private lateinit var tugasViewModel: AppViewModel
     private lateinit var tugasAdapter: TugasAdapter
 
     override fun onCreateView(
@@ -29,7 +29,7 @@ class TugasFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tugasViewModel = ViewModelProvider(this).get(TugasViewModel::class.java)
+        tugasViewModel = ViewModelProvider(this).get(AppViewModel::class.java)
         tugasAdapter = TugasAdapter(listOf())
 
         // Setup RecyclerView
