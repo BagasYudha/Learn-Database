@@ -7,5 +7,6 @@ import androidx.room.PrimaryKey
 data class Tugas(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val judul: String,
-    val deskripsi: String
+    val deskripsi: String,
+    val tanggal: String
 )

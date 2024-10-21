@@ -45,7 +45,9 @@ class TugasFragment : Fragment() {
         binding.addButton.setOnClickListener {
             val judul = binding.judulEditText.text.toString()
             val deskripsi = binding.deskripsiEditText.text.toString()
-            val tugas = Tugas(judul = judul, deskripsi = deskripsi)
+            val awokwo = binding.tanggalEditText.text.toString()
+
+            val tugas = Tugas(judul = judul, deskripsi = deskripsi, tanggal = awokwo)
             tugasViewModel.insertTugas(tugas)
         }
     }

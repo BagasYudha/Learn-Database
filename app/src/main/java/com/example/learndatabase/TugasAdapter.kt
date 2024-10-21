@@ -14,6 +14,7 @@ class TugasAdapter(private var tugas: List<Tugas>) :
         fun bind(task: Tugas) {
             binding.titleTextView.text = task.judul
             binding.deskripsiTextView.text = task.deskripsi
+            binding.tanggalTextView.text = task.tanggal
         }
     }
 
