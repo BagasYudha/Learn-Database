@@ -6,6 +6,8 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+<!--   To do List-->
+
     <EditText
         android:id="@+id/judulEditText"
         android:layout_width="match_parent"
@@ -33,6 +35,35 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="200dp"
         tools:listitem="@layout/item_tugas"/>
+
+
+<!--    Barang-->
+
+    <EditText
+        android:id="@+id/namaBarangEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Task Title"/>
+
+    <EditText
+        android:id="@+id/hargaBarangEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Task Description"/>
+
+
+    <Button
+        android:id="@+id/addButtonBarang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Task"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewBarang"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        tools:listitem="@layout/item_tugas"/>
+
 </LinearLayout>

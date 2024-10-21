@@ -5,9 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Tugas::class], version = 1)
+@Database(entities = [Tugas::class, Barang::class], version = 1)
 abstract class TugasDatabase : RoomDatabase() {
     abstract fun tugasDao(): TugasDao
+    abstract fun barangDao(): BarangDao
 
     companion object {
         @Volatile

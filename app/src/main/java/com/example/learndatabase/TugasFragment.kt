@@ -8,20 +8,21 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.learndatabase.databinding.FragmentTugasBinding
+import com.example.learndatabase.setup.Barang
 import com.example.learndatabase.setup.Tugas
 
 
 class TugasFragment : Fragment() {
 
     private lateinit var binding: FragmentTugasBinding
-    private lateinit var tugasViewModel: AppViewModel
+    private lateinit var appViewModel: AppViewModel
     private lateinit var tugasAdapter: TugasAdapter
+    private lateinit var barangAdapter: BarangAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentTugasBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -29,7 +30,10 @@ class TugasFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tugasViewModel = ViewModelProvider(this).get(AppViewModel::class.java)
+        appViewModel = ViewModelProvider(this).get(AppViewModel::class.java)
+
+
+//        Tugas
         tugasAdapter = TugasAdapter(listOf())
 
         // Setup RecyclerView
@@ -37,7 +41,7 @@ class TugasFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         // Observasi data dari ViewModel
-        tugasViewModel.allTugas.observe(viewLifecycleOwner) { tugas ->
+        appViewModel.allTugas.observe(viewLifecycleOwner) { tugas ->
             tugasAdapter.updateTugas(tugas)
         }
 
@@ -48,7 +52,27 @@ class TugasFragment : Fragment() {
             val awokwo = binding.tanggalEditText.text.toString()
 
             val tugas = Tugas(judul = judul, deskripsi = deskripsi, tanggal = awokwo)
-            tugasViewModel.insertTugas(tugas)
+            appViewModel.insertTugas(tugas)
+        }
+
+
+        //        Barang
+        barangAdapter = BarangAdapter(listOf())
+
+        binding.recyclerViewBarang.adapter = barangAdapter
+        binding.recyclerViewBarang.layoutManager = LinearLayoutManager(requireContext())
+
+        appViewModel.allBarang.observe(viewLifecycleOwner) { barang ->
+                barangAdapter.updateBarang(barang)
+            }
+
+        binding.addButtonBarang.setOnClickListener{
+            val barangBaru = binding.namaBarangEditText.text.toString()
+            val hargaNya = binding.hargaBarangEditText.text.toString()
+
+            val barang = Barang(nama_barang = barangBaru, harga_barang = hargaNya)
+            appViewModel.insertBarang(barang)
+
         }
     }
 }
