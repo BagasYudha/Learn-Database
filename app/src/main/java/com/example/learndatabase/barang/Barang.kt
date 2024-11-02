@@ -1,4 +1,4 @@
-package com.example.learndatabase.setup
+package com.example.learndatabase.barang
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

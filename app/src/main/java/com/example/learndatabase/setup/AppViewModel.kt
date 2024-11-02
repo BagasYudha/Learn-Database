@@ -1,19 +1,18 @@
-package com.example.learndatabase
+package com.example.learndatabase.setup
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.learndatabase.setup.Barang
-import com.example.learndatabase.setup.TugasDatabase
-import com.example.learndatabase.setup.Tugas
+import com.example.learndatabase.barang.Barang
+import com.example.learndatabase.tugas.Tugas
 import kotlinx.coroutines.launch
 
 class AppViewModel(application: Application) : AndroidViewModel(application) {
 
     // Deklarasi variabel dao
-    private val tugasDao = TugasDatabase.getDatabase(application).tugasDao()
-    private val barangDao= TugasDatabase.getDatabase(application).barangDao()
+    private val tugasDao = AppDatabase.getDatabase(application).tugasDao()
+    private val barangDao= AppDatabase.getDatabase(application).barangDao()
 
     // LiveData dari tugasDao langsung diobservasi
     val allTugas: LiveData<List<Tugas>> = tugasDao.getAllTugas()

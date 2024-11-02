@@ -1,10 +1,9 @@
-package com.example.learndatabase
+package com.example.learndatabase.tugas
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.learndatabase.databinding.ItemTugasBinding
-import com.example.learndatabase.setup.Tugas
 
 class TugasAdapter(private var tugas: List<Tugas>) :
     RecyclerView.Adapter<TugasAdapter.TugasViewHolder>() {

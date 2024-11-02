@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.learndatabase.barang.Barang
+import com.example.learndatabase.barang.BarangAdapter
+import com.example.learndatabase.setup.AppViewModel
+import com.example.learndatabase.tugas.Tugas
+import com.example.learndatabase.tugas.TugasAdapter
 import com.example.learndatabase.databinding.FragmentTugasBinding
-import com.example.learndatabase.setup.Barang
-import com.example.learndatabase.setup.Tugas
-
 
 class TugasFragment : Fragment() {
 

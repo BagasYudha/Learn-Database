@@ -1,4 +1,4 @@
-package com.example.learndatabase.setup
+package com.example.learndatabase.barang
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

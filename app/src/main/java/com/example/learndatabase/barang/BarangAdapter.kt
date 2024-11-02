@@ -1,11 +1,9 @@
-package com.example.learndatabase
+package com.example.learndatabase.barang
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.learndatabase.databinding.ItemBarangBinding
-import com.example.learndatabase.databinding.ItemTugasBinding
-import com.example.learndatabase.setup.Barang
 
 class BarangAdapter(private var barang: List<Barang>) :
     RecyclerView.Adapter<BarangAdapter.BarangViewHolder>() {
@@ -18,12 +16,12 @@ class BarangAdapter(private var barang: List<Barang>) :
                 }
         }
 
-    override fun onCreateViewHolder( parent: ViewGroup, viewType: Int): BarangAdapter.BarangViewHolder {
+    override fun onCreateViewHolder( parent: ViewGroup, viewType: Int): BarangViewHolder {
         val binding = ItemBarangBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return BarangViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: BarangAdapter.BarangViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BarangViewHolder, position: Int) {
         holder.bind(barang[position])
     }
 
