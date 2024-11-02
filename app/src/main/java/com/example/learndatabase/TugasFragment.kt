@@ -35,7 +35,7 @@ class TugasFragment : Fragment() {
         appViewModel = ViewModelProvider(this).get(AppViewModel::class.java)
 
 
-//        Tugas
+        // Tugas
         tugasAdapter = TugasAdapter(listOf())
 
         // Setup RecyclerView
@@ -54,11 +54,11 @@ class TugasFragment : Fragment() {
             val awokwo = binding.tanggalEditText.text.toString()
 
             val tugas = Tugas(judul = judul, deskripsi = deskripsi, tanggal = awokwo)
-            appViewModel.insertTugas(tugas)
+            appViewModel.insertTugasVm(tugas)
         }
 
 
-        //        Barang
+        // Barang
         barangAdapter = BarangAdapter(listOf())
 
         binding.recyclerViewBarang.adapter = barangAdapter
@@ -73,7 +73,7 @@ class TugasFragment : Fragment() {
             val hargaNya = binding.hargaBarangEditText.text.toString()
 
             val barang = Barang(nama_barang = barangBaru, harga_barang = hargaNya)
-            appViewModel.insertBarang(barang)
+            appViewModel.insertBarangVm(barang)
 
         }
     }

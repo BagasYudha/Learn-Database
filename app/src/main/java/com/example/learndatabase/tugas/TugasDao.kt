@@ -8,7 +8,7 @@ import androidx.room.Query
 @Dao
 interface TugasDao {
     @Insert
-    suspend fun insertTugas(tugas: Tugas)
+    suspend fun insertTugas(vararg tugas: Tugas)
 
     @Query("SELECT * FROM tugas")
     fun getAllTugas(): LiveData<List<Tugas>>
