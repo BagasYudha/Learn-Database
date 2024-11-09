@@ -34,7 +34,6 @@ class TugasFragment : Fragment() {
 
         appViewModel = ViewModelProvider(this).get(AppViewModel::class.java)
 
-
         // Tugas
         tugasAdapter = TugasAdapter(listOf())
 
@@ -51,30 +50,36 @@ class TugasFragment : Fragment() {
         binding.addButton.setOnClickListener {
             val judul = binding.judulEditText.text.toString()
             val deskripsi = binding.deskripsiEditText.text.toString()
-            val awokwo = binding.tanggalEditText.text.toString()
+            val tanggal = binding.tanggalEditText.text.toString()
+            val isPrioritas = binding.prioritasCheckBox.isChecked
 
-            val tugas = Tugas(judul = judul, deskripsi = deskripsi, tanggal = awokwo)
-            appViewModel.insertTugasVm(tugas)
+            if (judul.isNotEmpty() && deskripsi.isNotEmpty() && tanggal.isNotEmpty()) {
+                val tugas = Tugas(judul = judul, deskripsi = deskripsi, tanggal = tanggal, isPrioritas = isPrioritas)
+                appViewModel.insertTugasVm(tugas)
+            } else {
+                // Tambahkan logika untuk menampilkan pesan error jika ada input kosong
+            }
         }
-
 
         // Barang
         barangAdapter = BarangAdapter(listOf())
-
         binding.recyclerViewBarang.adapter = barangAdapter
         binding.recyclerViewBarang.layoutManager = LinearLayoutManager(requireContext())
 
         appViewModel.allBarang.observe(viewLifecycleOwner) { barang ->
-                barangAdapter.updateBarang(barang)
-            }
+            barangAdapter.updateBarang(barang)
+        }
 
-        binding.addButtonBarang.setOnClickListener{
+        binding.addButtonBarang.setOnClickListener {
             val barangBaru = binding.namaBarangEditText.text.toString()
             val hargaNya = binding.hargaBarangEditText.text.toString()
 
-            val barang = Barang(nama_barang = barangBaru, harga_barang = hargaNya)
-            appViewModel.insertBarangVm(barang)
-
+            if (barangBaru.isNotEmpty() && hargaNya.isNotEmpty()) {
+                val barang = Barang(nama_barang = barangBaru, harga_barang = hargaNya)
+                appViewModel.insertBarangVm(barang)
+            } else {
+                // Tambahkan logika untuk menampilkan pesan error jika ada input kosong
+            }
         }
     }
 }

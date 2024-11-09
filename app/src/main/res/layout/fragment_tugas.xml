@@ -27,6 +27,12 @@
         android:layout_height="wrap_content"
         android:hint="Tanggal"/>
 
+    <CheckBox
+        android:id="@+id/prioritasCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prioritas Tinggi" />
+
     <Button
         android:id="@+id/addButton"
         android:layout_width="wrap_content"

@@ -8,5 +8,6 @@ data class Tugas(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val judul: String,
     val deskripsi: String,
-    val tanggal: String
+    val tanggal: String,
+    val isPrioritas: Boolean = false
 )
