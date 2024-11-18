@@ -1,4 +1,4 @@
-package com.example.learndatabase
+package com.example.learndatabase.tugas
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.learndatabase.setup.AppViewModel
-import com.example.learndatabase.tugas.Tugas
-import com.example.learndatabase.tugas.TugasAdapter
 import com.example.learndatabase.databinding.FragmentTugasBinding
 
 class TugasFragment : Fragment() {
