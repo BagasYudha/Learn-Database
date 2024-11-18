@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/tugasFragment">
+
+    <fragment
+        android:id="@+id/tugasFragment"
+        android:name="com.example.learndatabase.tugas.TugasFragment"
+        android:label="Tugas"
+        tools:layout="@layout/fragment_tugas" />
+
+    <fragment
+        android:id="@+id/potterFragment"
+        android:name="com.example.learndatabase.potter.PotterFragment"
+        android:label="Potter"
+        tools:layout="@layout/fragment_potter" />
+
+</navigation>
