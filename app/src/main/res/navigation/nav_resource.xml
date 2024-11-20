@@ -12,8 +12,8 @@
 
     <fragment
         android:id="@+id/potterFragment"
-        android:name="com.example.learndatabase.potter.PotterFragment"
+        android:name="com.example.learndatabase.coffee.CoffeeFragment"
         android:label="Potter"
-        tools:layout="@layout/fragment_potter" />
+        tools:layout="@layout/fragment_coffee" />
 
 </navigation>
