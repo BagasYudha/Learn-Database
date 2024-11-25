@@ -1,28 +1,23 @@
 package com.example.learndatabase.note
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.learndatabase.databinding.FragmentNoteBinding
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 
 class NoteFragment : Fragment() {
 
     private lateinit var binding: FragmentNoteBinding
+    private val noteRepository = NoteRepository()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         binding = FragmentNoteBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -30,19 +25,16 @@ class NoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val database = Firebase.database
-        val noteRef = database.getReference("notes")
-
         val noteAdapter = NoteAdapter(mutableListOf(),
             onEdit = { note ->
                 binding.etNote.setText(note.name)
                 binding.btnAdd.setOnClickListener {
                     val updatedName = binding.etNote.text.toString()
-                    noteRef.child(note.id!!).setValue(Note(note.id, updatedName))
+                    noteRepository.updateNote(Note(note.id, updatedName))
                 }
             },
             onDelete = { note ->
-                noteRef.child(note.id!!).removeValue()
+                noteRepository.deleteNote(note)
             }
         )
 
@@ -52,23 +44,17 @@ class NoteFragment : Fragment() {
         binding.btnAdd.setOnClickListener {
             val noteName = binding.etNote.text.toString()
             if (noteName.isNotEmpty()) {
-                val noteId = noteRef.push().key
-                val newNote = Note(noteId, noteName)
-                noteRef.child(noteId!!).setValue(newNote)
+                val newNote = Note(name = noteName)
+                noteRepository.addNote(newNote)
                 binding.etNote.text.clear()
             }
         }
 
-        noteRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val notes = snapshot.children.mapNotNull { it.getValue(Note::class.java) }
+        // Observe notes data from repository
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            noteRepository.notes.collect { notes ->
                 noteAdapter.updateNotes(notes)
             }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.e("NoteFragment", "Failed to read notes", error.toException())
-            }
-        })
+        }
     }
-
 }
