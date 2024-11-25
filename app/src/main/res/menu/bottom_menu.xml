@@ -9,5 +9,9 @@
         android:id="@+id/potterFragment"
         android:title="Potter"
         android:icon="@drawable/baseline_menu_book_24"/>
+    <item
+        android:id="@+id/firebaseFragment"
+        android:title="Firebase"
+        android:icon="@drawable/baseline_local_fire_department_24"/>
 
 </menu>

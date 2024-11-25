@@ -16,4 +16,10 @@
         android:label="Potter"
         tools:layout="@layout/fragment_coffee" />
 
+    <fragment
+        android:id="@+id/firebaseFragment"
+        android:name="com.example.learndatabase.firebase.FirebaseFragment"
+        android:label="Firebase"
+        tools:layout="@layout/fragment_firebase" />
+
 </navigation>
