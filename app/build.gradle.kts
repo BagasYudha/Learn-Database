@@ -1,7 +1,10 @@
 plugins {
-    id("com.google.devtools.ksp")
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+
+    id("com.google.devtools.ksp")
+
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -56,6 +59,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.firebase.database)
 
     // Testing
     testImplementation(libs.junit)
@@ -94,4 +98,12 @@ dependencies {
 
     implementation("com.github.bumptech.glide:glide:4.15.1")
     annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
+
+    // Import the Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
+
+    // When using the BoM, don't specify versions in Firebase dependencies
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-database-ktx:21.0.0")
+
 }
