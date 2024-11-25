@@ -18,8 +18,8 @@
 
     <fragment
         android:id="@+id/firebaseFragment"
-        android:name="com.example.learndatabase.firebase.FirebaseFragment"
+        android:name="com.example.learndatabase.note.NoteFragment"
         android:label="Firebase"
-        tools:layout="@layout/fragment_firebase" />
+        tools:layout="@layout/fragment_note" />
 
 </navigation>
