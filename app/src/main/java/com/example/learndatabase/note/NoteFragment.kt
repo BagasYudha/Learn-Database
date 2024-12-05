@@ -5,14 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.learndatabase.databinding.FragmentNoteBinding
+import com.example.learndatabase.setup.AppViewModel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class NoteFragment : Fragment() {
 
     private lateinit var binding: FragmentNoteBinding
-    private val noteRepository = NoteRepository()
+    private lateinit var appViewModel: AppViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,34 +29,39 @@ class NoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Inisialisasi ViewModel
+        appViewModel = ViewModelProvider(this).get(AppViewModel::class.java)
+
         val noteAdapter = NoteAdapter(mutableListOf(),
             onEdit = { note ->
                 binding.etNote.setText(note.name)
                 binding.btnAdd.setOnClickListener {
                     val updatedName = binding.etNote.text.toString()
-                    noteRepository.updateNote(Note(note.id, updatedName))
+                    appViewModel.updateNoteVm(Note(note.id, updatedName))
                 }
             },
             onDelete = { note ->
-                noteRepository.deleteNote(note)
+                appViewModel.deleteNoteVm(note)
             }
         )
 
+        // Setup RecyclerView
         binding.rvNotes.adapter = noteAdapter
         binding.rvNotes.layoutManager = LinearLayoutManager(context)
 
+        // Tambah Note
         binding.btnAdd.setOnClickListener {
             val noteName = binding.etNote.text.toString()
             if (noteName.isNotEmpty()) {
                 val newNote = Note(name = noteName)
-                noteRepository.addNote(newNote)
+                appViewModel.addNoteVm(newNote)
                 binding.etNote.text.clear()
             }
         }
 
-        // Observe notes data from repository
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            noteRepository.notes.collect { notes ->
+        // Observasi data Note dari ViewModel
+        viewLifecycleOwner.lifecycleScope.launch {
+            appViewModel.notes.collectLatest { notes ->
                 noteAdapter.updateNotes(notes)
             }
         }
