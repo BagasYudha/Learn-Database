@@ -19,7 +19,7 @@ class NoteRepository {
         // Listen to data changes in Firebase
         noteRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val fetchedNotes = snapshot.children.mapNotNull { it.getValue(Note::class.java) }
+                val fetchedNotes = snapshot.children.mapNotNull { it.getValue(Note::class.java) }.filter { !it.isDone }
                 _notes.value = fetchedNotes
             }
 

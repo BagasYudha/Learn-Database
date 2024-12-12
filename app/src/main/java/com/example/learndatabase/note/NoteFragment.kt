@@ -53,7 +53,7 @@ class NoteFragment : Fragment() {
         binding.btnAdd.setOnClickListener {
             val noteName = binding.etNote.text.toString()
             if (noteName.isNotEmpty()) {
-                val newNote = Note(name = noteName)
+                val newNote = Note(name = noteName, isDone = false)
                 appViewModel.addNoteVm(newNote)
                 binding.etNote.text.clear()
             }
